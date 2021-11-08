@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 
-const TodoItem = ({ todo }) => <li>{todo}</li>;
+function memoList(props) {
+  const myMemo = props.myMemo;
+  const listItem = myMemo.map((memo) => <li key={memo.toString()}>{memo}</li>);
+  return <ul>{listItem}</ul>;
+}
+
+const myMemo = [""];
 
 function main() {
   const [text1, setTitle] = useState("");
   const [text2, setContex] = useState("");
-
+  state = { title: [], context: [] };
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
   };
@@ -24,6 +30,7 @@ function main() {
 
   return (
     <div>
+      <memoList myMemo={myMemo} />
       <h2>메모장</h2>
       <h3>제목</h3>
       <input onChange={onChangeTitle} value={text1} />
